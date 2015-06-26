@@ -24,6 +24,8 @@ public class Main {
 	private boolean running;
 	private Level level;
 	private Player player;
+	private Matrix4f projection;
+	private Matrix4f view;
 	private Matrix4f mvpMatrix;
 
 	public static void main(String[] args) {
@@ -68,6 +70,9 @@ public class Main {
 			e.printStackTrace();
 		}
 		//TODO player zu level hinzufügen
+		projection = Matrix4f.orthographic(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
+		view = new Matrix4f();
+		Shader.standart.setUniformMat4f("projection", projection);
 	}
 
 	public void loop() {
@@ -85,10 +90,10 @@ public class Main {
 
 	private void update() {
 		glfwPollEvents();
-		mvpMatrix = level.getMatrix();
+		
 		updateKeys();
 		level.update();
-		Shader.standart.setUniformMat4f("MVP", mvpMatrix);
+		Shader.standart.setUniformMat4f("view", view);
 	}
 
 	private void render() {
@@ -113,12 +118,10 @@ public class Main {
 			}
 		}
 		if(Input.keys[GLFW_KEY_W]){
-			level.translate(0f, 1f, 0f);
-			mvpMatrix = mvpMatrix.multiply(level.getMatrix());
+			view = view.multiply(Matrix4f.translate(1.0f, 0.0f, 0.0f));
 		}
 		if(Input.keys[GLFW_KEY_S]){
-			level.translate(0f, -1f, 0f);
-			mvpMatrix = mvpMatrix.multiply(level.getMatrix());
+			view = view.multiply(Matrix4f.translate(1.0f, 0.0f, 0.0f));
 		}
 	}
 }

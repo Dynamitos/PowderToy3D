@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import data.Matrix4f;
 import data.Vector3f;
 import map.Area;
 
@@ -37,29 +36,6 @@ public class Level {
 	public void update(){
 		for (Entry<Integer, Area> entry : chunks.entrySet()) {
 			entry.getValue().update();
-		}
-	}
-	public Matrix4f getMatrix(){
-		Matrix4f result = new Matrix4f();
-		result.setIdentity();
-		for (Entry<Integer, Area> entry : chunks.entrySet()) {
-			result = result.multiply(entry.getValue().getMatrix());
-		}
-		return result;
-	}
-	public void translate(float x, float y, float z) {
-		for (Entry<Integer, Area> entry : chunks.entrySet()) {
-			entry.getValue().translate(x, y, z);
-		}
-	}
-	public void rotate(float degrees, float x, float y, float z) {
-		for (Entry<Integer, Area> entry : chunks.entrySet()) {
-			entry.getValue().translate(x, y, z);
-		}
-	}
-	public void scale(float x, float y, float z) {
-		for (Entry<Integer, Area> entry : chunks.entrySet()) {
-			entry.getValue().scale(x, y, z);
 		}
 	}
 }

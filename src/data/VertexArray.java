@@ -78,6 +78,7 @@ public class VertexArray {
 		Shader.standart.setUniform4f("ambientColor", new Vector4f(material.getAmbient().x, material.getAmbient().y, material.getAmbient().z, 1.0f));
 		Shader.standart.setUniform4f("specularColor", new Vector4f(material.getSpecular().x, material.getSpecular().y, material.getSpecular().z, 1.0f));
 		Shader.standart.setUniform4f("diffuseColor", new Vector4f(material.getDiffuse().x, material.getDiffuse().y, material.getDiffuse().z, 1.0f));
+		Shader.standart.setUniformMat4f("model", model);
 	}
 
 	public void unbind() {
