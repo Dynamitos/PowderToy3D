@@ -17,7 +17,7 @@ public class Shader {
 	public static final int VERTEX_ATTRIB = 0;
 	public static final int TCOORD_ATTRIB = 1;
 	
-	//TODO insert needed shaders
+	//TODO mehrere Shader?
 	public static Shader standart;
 	
 	private boolean enabled = false;
@@ -30,7 +30,7 @@ public class Shader {
 	}
 	
 	public static void loadAll() {
-		//TODO insert needed shaders
+		//TODO mehrere Shader?
 		standart = new Shader("./shader/std.vert", "./shader/std.frag");
 	}
 	
@@ -39,9 +39,9 @@ public class Shader {
 			return locationCache.get(name);
 		
 		int result = glGetUniformLocation(ID, name);
-		if (result == -1) 
-			System.err.println("Could not find uniform variable '" + name + "'!");
-		else
+//		if (result == -1) 
+//			System.err.println("Could not find uniform variable '" + name + "'!");
+//		else
 			locationCache.put(name, result);
 		return result;
 	}

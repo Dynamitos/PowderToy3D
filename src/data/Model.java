@@ -41,9 +41,16 @@ public class Model {
 			}
 			if (buffer.startsWith("v ")) {
 				String[] tokens = buffer.split(" ");
+				if(tokens.length == 4){
+				vertexList.add(Float.parseFloat(tokens[1]));
 				vertexList.add(Float.parseFloat(tokens[2]));
 				vertexList.add(Float.parseFloat(tokens[3]));
-				vertexList.add(Float.parseFloat(tokens[4]));
+				}
+				else if (tokens.length == 5){
+					vertexList.add(Float.parseFloat(tokens[2]));
+					vertexList.add(Float.parseFloat(tokens[3]));
+					vertexList.add(Float.parseFloat(tokens[4]));
+				}
 			}
 			if (buffer.startsWith("o ")) {
 				continue;
